@@ -19,8 +19,10 @@ import proposal
 from crypto_token import CryptoToken
 import voter as voter_module
 
+# OIP-37 - Four Test Events PULP 001: "0xa81c75b847e5038bcb61963f4871cc36cbf58d9e416990c212d18a31a1e19614"
+#  S1 Governance Committee Candidates: "0xed66018cf282c555c0868558e14454f7edf4d4030cb999244e0c7efb151a579b"
 power = 2
-proposal_id = "0xa81c75b847e5038bcb61963f4871cc36cbf58d9e416990c212d18a31a1e19614" # OIP-37 - Four Test Events PULP 001
+proposal_id = "0xed66018cf282c555c0868558e14454f7edf4d4030cb999244e0c7efb151a579b"
 address = '0x1bBD79f1Ecb3f2cCC586A5E3A26eE1d1D2E1991f'
 decimals = 18
 
@@ -47,10 +49,11 @@ def get_unique_voters() -> set:
 
 
 def get_wallets(proposal) -> list[str]:
-  """Given a data frame for a proposal,
-  return a list of unique wallets that voted.
-  
-  And save to file"""
+  # #TODO: this may have been superceded by: get_unique_voters()
+  """Given a proposal with voting records,
+  a list of unique wallets that voted.
+  save to file and return"""
+
   file_path = "./snapshot/data/voters.py"
   wallets = set()
   vote_records: dict = proposal.votes
@@ -69,14 +72,16 @@ def calculate_outcomes(voters: list, proposal: proposal.Proposal):
   # for each voter, their choice times their votes
   # sum
   # voters track index of option, proposal is a list of title strings
-  outcomes = [0 for i in range(0,len(proposal.choices))]
-  hypothetical_outcomes = [0 for i in range(0,len(proposal.choices))]
+  start, end = 0, len(proposal.choices)
+  outcomes = [0 for i in range(start, end)]
+  hypothetical_outcomes = [0 for i in range(start, end)]
   for v in voters:
     normalized_choices = voter_module.calculate_normalized_choices(v.choices)
     adjusted_votes = v.votes ** (1 / power)
-    for choice_index, allocation in normalized_choices.items():
-      outcomes[choice_index] += v.votes * allocation
-      hypothetical_outcomes[choice_index] += adjusted_votes * allocation
+    for choice, allocation in normalized_choices.items():
+      choice_index = int(choice) - 1
+      outcomes[int(choice_index)] += v.votes * allocation
+      hypothetical_outcomes[int(choice_index)] += adjusted_votes * allocation
   
   return (outcomes, hypothetical_outcomes)
 
@@ -87,7 +92,11 @@ def main():
   quadratic_proposal = proposal.get_proposal(proposal_id)
   wallets = proposal.get_unique_voters(proposal_id)
 
+  # here manually take the output of wallets
+  print(wallets)
   # use javascript to get token balance per wallet and save to wallet_balances.py
+
+
   balances: list[dict[str: str, str: int]] = wallet_balances.balances
 
   voters = []

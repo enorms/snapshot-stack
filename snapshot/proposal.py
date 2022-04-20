@@ -74,6 +74,7 @@ def get_proposal(proposal_id: str) -> Proposal:
     file_path = "./snapshot/data/proposal.json"
 
     # use local file if available
+    res = None
     try:
         res = json.load(open(file_path))
     except Exception as error:
