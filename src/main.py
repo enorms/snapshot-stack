@@ -13,18 +13,21 @@
 # 
 
 import requests
+from collections import OrderedDict
+from pprint import pprint
 import pandas as pd
-import data.wallet_balances as wallet_balances
 import proposal
-from crypto_token import CryptoToken
 import voter as voter_module
+
 
 # OIP-37 - Four Test Events PULP 001: "0xa81c75b847e5038bcb61963f4871cc36cbf58d9e416990c212d18a31a1e19614"
 #  S1 Governance Committee Candidates: "0xed66018cf282c555c0868558e14454f7edf4d4030cb999244e0c7efb151a579b"
-power = 2
-proposal_id = "0xed66018cf282c555c0868558e14454f7edf4d4030cb999244e0c7efb151a579b"
+# S1 Treasury: 0xd9afc0617e1a898f71f92a88f9e07c82e9d26ec27ef8fd54c706bd8e6999a368
+# S1 Dev: 0x29f555de38faf2cc815d9d32d95904b1c5da1be1ee1a2c7ed8f4ad2628c2e594
+power = 3
+proposal_id = "0x29f555de38faf2cc815d9d32d95904b1c5da1be1ee1a2c7ed8f4ad2628c2e594"
 address = '0x1bBD79f1Ecb3f2cCC586A5E3A26eE1d1D2E1991f'
-decimals = 18
+decimals = 18  # etherscan csv download already accounts for this
 
 
 def get_unique_voters() -> set:
@@ -66,7 +69,7 @@ def get_wallets(proposal) -> list[str]:
   return list(wallets)
 
 
-def calculate_outcomes(voters: list, proposal: proposal.Proposal):
+def calculate_outcomes(voters: list[voter_module.Voter], proposal: proposal.Proposal) -> ():
   """Given voters and a proposal, return outcome"""
   # sum of votes times choices
   # for each voter, their choice times their votes
@@ -86,35 +89,42 @@ def calculate_outcomes(voters: list, proposal: proposal.Proposal):
   return (outcomes, hypothetical_outcomes)
 
 
+
+def rank_results(choices, outcomes, hypothetical_outcomes, rounding=True):
+  if rounding:
+    outcomes_sorted = {choices[i]: round(outcomes[i]) for i in range(0, len(choices))}
+    hypothetical_outcomes_sorted = {choices[i]: round(hypothetical_outcomes[i]) for i in range(0, len(choices))}
+  else:
+    outcomes_sorted = {choices[i]: outcomes[i] for i in range(0, len(choices))}
+    hypothetical_outcomes_sorted = {choices[i]: hypothetical_outcomes[i] for i in range(0, len(choices))}
+
+  value_for_key = lambda item: item[1]
+  outcomes_sorted = OrderedDict(sorted(outcomes_sorted.items(), key=value_for_key, reverse=True))
+  hypothetical_outcomes_sorted = OrderedDict(sorted(hypothetical_outcomes_sorted.items(), key=value_for_key, reverse=True))
+  return (outcomes_sorted, hypothetical_outcomes_sorted)
+
+
 def main():
-  token = CryptoToken(address=address, decimals=decimals)
-
   quadratic_proposal = proposal.get_proposal(proposal_id)
-  wallets = proposal.get_unique_voters(proposal_id)
-
-  # here manually take the output of wallets
-  print(wallets)
-  # use javascript to get token balance per wallet and save to wallet_balances.py
-
-
-  balances: list[dict[str: str, str: int]] = wallet_balances.balances
+  voting_wallets = proposal.get_unique_voters(proposal_id)
 
   voters = []
-  for item in balances:
-    wallet = item.get('wallet') # DEBUG test this
-    tokens = item.get('tokenBalance') # DEBUG test this
-    votes = int(tokens) / token.decimals
+  for wallet in voting_wallets:
+    votes = voter_module.get_token_balance(wallet)
     choices = proposal.get_choices(wallet, quadratic_proposal)
-    voter = voter_module.Voter(wallet=wallet, tokens=tokens, votes=votes, choices=choices)
+    voter = voter_module.Voter(wallet=wallet, votes=votes, choices=choices)
     voters.append(voter)
 
   outcomes, hypothetical_outcomes = calculate_outcomes(voters, quadratic_proposal)
+  outcomes, hypothetical_outcomes = rank_results(quadratic_proposal.choices, outcomes, hypothetical_outcomes)
+
   print("title")
   print(quadratic_proposal.title)
-  print("choices")
-  print(quadratic_proposal.choices)
-  print("outcomes", outcomes)
-  print("hypothetical_outcomes", hypothetical_outcomes)
+  print("outcomes")
+  pprint(outcomes)
+  pprint("hypothetical_outcomes")
+  pprint(hypothetical_outcomes)
+
 
 
 if __name__ == "__main__":

@@ -1,10 +1,18 @@
 from pydantic import BaseModel
+from utils import files
 
 class Voter(BaseModel):
   wallet: str
-  tokens: int = -1
-  votes: float = -1 # adjust for decimals
+  votes: float = -1 # tokens adjusted for decimals
   choices: dict = {} # for a particular vote
+
+
+def get_token_balance(wallet: str) -> float:
+    """Given a wallet public address
+    return tokens
+
+    Balance is decimal_adjusted """
+    return files.get_decimal_adjusted_tokens(wallet)
 
 
 def calculate_adjusted_votes(voter: Voter, power: int = 2) -> float:

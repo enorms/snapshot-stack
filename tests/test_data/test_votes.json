@@ -1,0 +1,39 @@
+{
+    "data": {
+        "votes": [
+            {
+                "id": "0x7a8a7fbcf2bb5d1f44144a2e0bac06f4e02c01a310cd31c8ff4b4487a2be4faf",
+                "voter": "0x926d01fB412884F24a1680D1398D0f1Dc4Bd59a0",
+                "created": 1650070106,
+                "proposal": {
+                    "id": "0xed66018cf282c555c0868558e14454f7edf4d4030cb999244e0c7efb151a579b"
+                },
+                "choice": {
+                    "1": 1,
+                    "2": 2,
+                    "3": 3,
+                    "5": 1
+                },
+                "space": {
+                    "id": "orangedaoxyz.eth"
+                }
+            },
+            {
+                "id": "0xf79fe173f551d26243b5e05ca0604c94290905b20a6685e7bfb6fb738f6d3e4e",
+                "voter": "0x7D25CB84CdfBDAF9A35dF24Be0a854E4D9d96f9d",
+                "created": 1648861379,
+                "proposal": {
+                    "id": "0xed66018cf282c555c0868558e14454f7edf4d4030cb999244e0c7efb151a579b"
+                },
+                "choice": {
+                    "2": 1,
+                    "3": 1,
+                    "4": 1
+                },
+                "space": {
+                    "id": "orangedaoxyz.eth"
+                }
+            }
+        ]
+    }
+}

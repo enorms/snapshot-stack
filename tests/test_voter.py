@@ -1,4 +1,5 @@
-from snapshot import voter
+from src import voter
+
 
 def test_calculate_normalized_choices():
 

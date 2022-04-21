@@ -1,0 +1,59 @@
+title
+S1 Governance Committee Candidates
+outcomes
+OrderedDict([('oparrott.eth', 688593),
+             ('RicardoG.eth', 650268),
+             ('Krel.eth', 643678),
+             ('arangel.eth', 290949),
+             ('akshatg.eth', 36816)])
+'hypothetical_outcomes'
+OrderedDict([('oparrott.eth', 2684),
+             ('RicardoG.eth', 2605),
+             ('Krel.eth', 2184),
+             ('arangel.eth', 1090),
+             ('akshatg.eth', 112)])
+
+
+title
+S1 Treasury Committee Candidates
+outcomes
+OrderedDict([('Maqq', 764947),
+             ('iamdonho', 629327),
+             ('huh.eth', 626094),
+             ('ayan', 183633),
+             ('Pineapple (Jamie)', 42518),
+             ('simonft', 7113)])
+'hypothetical_outcomes'
+OrderedDict([('Maqq', 2722),
+             ('huh.eth', 2146),
+             ('iamdonho', 2140),
+             ('ayan', 859),
+             ('Pineapple (Jamie)', 202),
+             ('simonft', 69)])
+
+
+title
+S1 Development Committee Candidates
+outcomes
+OrderedDict([('mrmemes.eth#6174', 639706),
+             ('byron#4552', 613824),
+             ('sayangel#7796', 613571),
+             ('enx#8760', 245986),
+             ('voska#6015', 157758),
+             ('chingularity#8979', 44185)])
+'hypothetical_outcomes'
+OrderedDict([('byron#4552', 2264),
+             ('sayangel#7796', 2173),
+             ('mrmemes.eth#6174', 2094),
+             ('enx#8760', 1317),
+             ('voska#6015', 621),
+             ('chingularity#8979', 282)])
+
+power=3
+'hypothetical_outcomes'
+OrderedDict([('byron#4552', 376),
+             ('sayangel#7796', 351),
+             ('mrmemes.eth#6174', 327),
+             ('enx#8760', 244),
+             ('voska#6015', 105),
+             ('chingularity#8979', 56)])

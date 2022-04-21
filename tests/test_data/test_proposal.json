@@ -1,0 +1,25 @@
+{
+    "data": {
+        "proposal": {
+            "id": "0xed66018cf282c555c0868558e14454f7edf4d4030cb999244e0c7efb151a579b",
+            "title": "S1 Governance Committee Candidates",
+            "body": "## akshatg.eth\nNewer here than the others, so if time here is the major factor, vote no. However, in my short time, I have led engagement projects (1:1 chat roulette, EU community), helped dealflow analytics, am now reviewing/speaking with deals, and helping portcos. I have been on the founding team of a very successful $100M+ early-stage fund and want to leverage the learnings/network, especially around deal evaluation distribution & portco support automation to make our DAO bigger than the sum of its parts. \n\n## RicardoG.eth\nAs part of the S-0 Gov team, I had the amazing opportunity to contribute to building the DAO\u2019s foundation. I look forward to continuing to establish our vision & working together to create an exemplary DAO, w/ product, community & diversity at its core. I\u2019d appreciate your vote for S1!\nI\u2019m proud to have:\n- Designed/hosted our Town Halls\n- Improved proposal/voting process\n- Advised/championed future leaders\n- Planned/hosted chats w/ web3 leaders (Ian @Syndicate 50+ attendees)\n- Assisted in planning our IRL retreat\n- Developed software (Juicy Assistant) to enrich our community \n\n## oparrott.eth\n- 10-year full-time commitment to Orange Fund. On track to raise a $50M fund that brings 100% of carry into the DAO treasury. Established the legal framework and leading operations. Kicked off Dealflow team.\n- Joining S1 Gov Team to prepare Orange DAO for growth from new YC batches.\n- Served on S0 Treasury. We rocked it. Setup multisig and initial token distribution systems including vesting and airdrops. \n- Co-created S0 Token Guidance, Operating Manual. Led OIP-10 so new members get $ORANGE.\n\n## Krel.eth\n- Currently serving as Design Lead for ODAO. During season 0, I\u2019ve shipped designs for mascot, LFG game, & website. \n- My dayjob is building NewShadesDAO (\"discord for DAOs\"), I'm intrigued by how DAOs can evolve day-to-day activities, improve communication, and mature as Orgs. One recent conviction is the need for \"optimistic governance\", to avoid voting fatigue, etc. \n- My main goal would be to develop governance methods to improve KPIs such as voter participation and make it easier to contribute.\n\n## arangel.eth (rangel#9823) \nWould be honored to have your vote for S1 Gov Team.\n- Recently sold the business I took to YC S14, and since then have been contributing to OrangeDAO.  \n- Helping lead the outreach team which is actively working with our first Layer 1 partner.  Which includes rolling out a variety of mutually beneficial offerings and tools.\n- I view onboarding as a critical piece that should be improved in S1.  This will enable us to build a growing community of highly engaged orange alum. A few ideas are: \n  - creating a simple onboarding checklist \n  - creating a first 1-4-12 week onboarding timeline \n  - an $orange mentor/buddy program to increase excitement/engagement from new members.  \n\n\n",
+            "choices": [
+                "akshatg.eth",
+                "RicardoG.eth",
+                "oparrott.eth",
+                "Krel.eth",
+                "arangel.eth"
+            ],
+            "start": 1648861200,
+            "end": 1650070800,
+            "snapshot": "14503323",
+            "state": "closed",
+            "author": "0x4558e88C5a972244c995AE4DD95a84fc790355f9",
+            "space": {
+                "id": "orangedaoxyz.eth",
+                "name": "Orange DAO "
+            }
+        }
+    }
+}

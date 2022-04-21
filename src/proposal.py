@@ -45,8 +45,8 @@ def get_unique_voters(proposal_id: str) -> list:
 
 
 def _get_votes(proposal_id: str):
-    """"""
-    file_path = "./snapshot/data/votes.json"
+    """handle data transform"""
+    file_path = "./src/data/votes.json"
 
     # use local file if available
     try:
@@ -64,14 +64,18 @@ def _get_votes(proposal_id: str):
 
     data: dict = res.get('data')
     votes: list[dict] = data.get('votes')
+    for item in votes:
+        item.update({'voter': item.get('voter').casefold()})
     return votes
 
 
-def get_proposal(proposal_id: str) -> Proposal:
+def get_proposal(proposal_id: str, file_path: str = None) -> Proposal:
     """Given a proposal id, return a complete object.
     
     Load local data or call API if needed."""
-    file_path = "./snapshot/data/proposal.json"
+    # Test function with path to test data file
+    if file_path is None:
+        file_path = "./src/data/proposal.json"
 
     # use local file if available
     res = None

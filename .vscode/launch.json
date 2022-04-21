@@ -8,10 +8,13 @@
             "name": "debug",
             "type": "python",
             "request": "launch",
-            "program": "./snapshot/main.py",
+            "program": "./src/main.py",
             "console": "integratedTerminal",
             "preLaunchTask": "clear",
-            "justMyCode": true
+            "cwd": "${workspaceFolder}/",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/venv/bin/activate"
+              },
         }
     ]
 }
